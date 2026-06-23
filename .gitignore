@@ -1,0 +1,43 @@
+# Dependencies
+node_modules/
+
+# Build output (Vite, React, and Sanity)
+dist/
+dist-ssr/
+build/
+.sanity/
+
+# Environment variables and local secrets
+.env
+.env.*
+!.env.example
+!**/.env.example
+
+# Test output
+coverage/
+.nyc_output/
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Tool caches
+.vite/
+.eslintcache
+*.tsbuildinfo
+
+# Editors and operating systems
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# Local deployment metadata
+.vercel/
+.netlify/

@@ -1,0 +1,12 @@
+{
+  "name": "ResumeBiodata.in Resume Builder",
+  "short_name": "Resume Builder",
+  "description": "Create, preview, and download a professional resume PDF.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f0f4ff",
+  "theme_color": "#1e3a8a",
+  "icons": [
+    { "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ]
+}
