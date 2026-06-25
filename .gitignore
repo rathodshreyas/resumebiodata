@@ -41,3 +41,5 @@ Thumbs.db
 # Local deployment metadata
 .vercel/
 .netlify/
+
+.vercel
