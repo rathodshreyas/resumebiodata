@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
 
+Host: resumebiodata.in
 Sitemap: https://resumebiodata.in/sitemap.xml

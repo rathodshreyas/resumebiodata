@@ -3,6 +3,7 @@ import HomePage from './components/HomePage';
 import ResumeForm from './components/ResumeForm';
 import TemplateSelector from './components/TemplateSelector';
 import ResumePreview from './components/ResumePreview';
+import Seo from './components/blog/Seo';
 import './App.css';
 
 const Blog = React.lazy(() => import('./pages/Blog'));
@@ -26,16 +27,16 @@ const pathPages = Object.fromEntries(Object.entries(pagePaths).map(([page, path]
 
 const pageSeo = {
   home: {
-    title: 'Free Resume Builder & Biodata Maker | ResumeBiodata.in',
-    description: 'Create a professional, ATS-friendly resume online with guided sections, clean templates, instant preview, and high-quality PDF download.',
+    title: 'Free Resume Builder & CV Maker Online | ResumeBiodata.in',
+    description: 'Create ATS-friendly professional resumes and CVs online for free. Choose clean templates, customize in minutes, preview instantly, and download high-quality PDF resumes.',
   },
   blog: {
     title: 'Resume Writing Guides & Career Tips | ResumeBiodata.in',
-    description: 'Practical resume writing, biodata, ATS, education, skills, and job application guidance for students, freshers, and professionals.',
+    description: 'Practical resume writing, ATS, education, skills, and job application guidance for students, freshers, and professionals.',
   },
   about: {
     title: 'About ResumeBiodata.in | Free Resume Builder',
-    description: 'Learn how ResumeBiodata.in helps job seekers create clear, professional resumes and biodata documents with privacy-friendly browser tools.',
+    description: 'Learn how ResumeBiodata.in helps job seekers create clear, professional resumes and CV documents with privacy-friendly browser tools.',
   },
   contact: {
     title: 'Contact ResumeBiodata.in Support',
@@ -62,6 +63,70 @@ const pageSeo = {
     description: 'The requested page could not be found. Return to ResumeBiodata.in to create a professional resume.',
   },
 };
+const mainKeywords = 'free resume builder, resume maker online, CV maker, ATS resume builder, professional resume templates, resume PDF download';
+
+const faqItems = [
+  {
+    question: 'Is ResumeBiodata.in free to use?',
+    answer: 'Yes. You can create, preview, and download a professional resume PDF for free.',
+  },
+  {
+    question: 'Can I make an ATS-friendly resume online?',
+    answer: 'Yes. The builder uses clean sections and readable templates that are suitable for many applicant tracking systems.',
+  },
+  {
+    question: 'Can I download my resume as a PDF?',
+    answer: 'Yes. After choosing a template, you can preview your resume and download it as a high-quality PDF.',
+  },
+  {
+    question: 'Do I need an account to create a resume?',
+    answer: 'No. The resume builder runs in your browser and does not require an account.',
+  },
+];
+
+const getPageTitle = (activePage, step, seo) => {
+  if (activePage === 'builder' && step === 2) return 'Choose a Resume Template | ResumeBiodata.in';
+  if (activePage === 'builder' && step === 3) return 'Preview and Download Resume PDF | ResumeBiodata.in';
+  return seo.title;
+};
+
+const buildSiteSchemas = ({activePage, title, description, canonicalPath, canonicalUrl}) => {
+  const breadcrumbName = activePage === 'home' ? 'Home' : title.replace(' | ResumeBiodata.in', '');
+  const schemas = [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        {'@type': 'ListItem', position: 1, name: 'Home', item: siteUrl},
+        ...(canonicalPath === '/' ? [] : [{'@type': 'ListItem', position: 2, name: breadcrumbName, item: canonicalUrl}]),
+      ],
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'WebApplication',
+      name: 'ResumeBiodata.in Resume Builder',
+      url: `${siteUrl}/resume-builder`,
+      applicationCategory: 'BusinessApplication',
+      operatingSystem: 'Web',
+      description,
+      offers: {'@type': 'Offer', price: '0', priceCurrency: 'INR'},
+    },
+  ];
+
+  if (activePage === 'home') {
+    schemas.push({
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: faqItems.map((item) => ({
+        '@type': 'Question',
+        name: item.question,
+        acceptedAnswer: {'@type': 'Answer', text: item.answer},
+      })),
+    });
+  }
+
+  return schemas;
+};
 
 const normalizePath = (path) => {
   const cleanPath = (path || '/').split('?')[0].split('#')[0].replace(/\/+$/, '');
@@ -83,15 +148,6 @@ const getBlogSlugFromPath = () => {
   }
 };
 
-function setMetaTag(attribute, key, content) {
-  let tag = document.head.querySelector(`meta[${attribute}="${key}"]`);
-  if (!tag) {
-    tag = document.createElement('meta');
-    tag.setAttribute(attribute, key);
-    document.head.appendChild(tag);
-  }
-  tag.setAttribute('content', content);
-}
 
 const defaultData = {
   fullName: 'Rahul Patil',
@@ -175,7 +231,7 @@ function TermsPage() {
   return (
     <InfoPage title="Terms & Conditions" eyebrow="Website Terms">
       <p><strong>Last updated:</strong> June 21, 2026</p>
-      <section><h2>Acceptable Use</h2><p>By using ResumeBiodata.in, you agree to use the website only for lawful resume, biodata, and career-document creation. You must not misuse the service, attempt to disrupt it, upload harmful material, impersonate another person, or create deceptive documents.</p></section>
+      <section><h2>Acceptable Use</h2><p>By using ResumeBiodata.in, you agree to use the website only for lawful resume and career-document creation. You must not misuse the service, attempt to disrupt it, upload harmful material, impersonate another person, or create deceptive documents.</p></section>
       <section><h2>Your Content and Responsibilities</h2><p>You retain responsibility for the information and photo you enter. You must have the right to use that content and must verify spelling, dates, qualifications, claims, and contact details before sharing a downloaded document.</p></section>
       <section><h2>Service Availability</h2><p>The templates and tools are provided on an as-available basis. We work to keep the website reliable but cannot guarantee uninterrupted access, compatibility with every device, or acceptance of a resume by any employer or recruitment system.</p></section>
       <section><h2>Intellectual Property</h2><p>The website interface, original guidance, branding, and template implementation are protected by applicable intellectual-property laws. You may use PDFs you create for personal job applications, but you may not copy or resell the website itself.</p></section>
@@ -228,7 +284,7 @@ function NotFoundPage({ onHome }) {
 function RouteLoadingPage() {
   return (
     <section className="site-page" aria-live="polite" aria-busy="true">
-      <div className="site-page-header"><span>Loading</span><h1>Preparing the blog…</h1></div>
+      <div className="site-page-header"><span>Loading</span><h1>Preparing the blog...</h1></div>
     </section>
   );
 }
@@ -282,60 +338,6 @@ function App() {
     return () => window.removeEventListener('popstate', handlePopState);
   }, []);
 
-  React.useEffect(() => {
-    const activePage = step > 0 ? 'builder' : sitePage;
-    if (activePage === 'blog-post') return undefined;
-    const seo = pageSeo[activePage] || pageSeo['not-found'];
-    const canonicalPath = pagePaths[activePage] || normalizePath(window.location.pathname);
-    const canonicalUrl = `${siteUrl}${canonicalPath}`;
-    const pageTitle = activePage === 'builder' && step === 2
-      ? 'Choose a Resume Template | ResumeBiodata.in'
-      : activePage === 'builder' && step === 3
-        ? 'Preview and Download Resume PDF | ResumeBiodata.in'
-        : seo.title;
-
-    document.title = pageTitle;
-    document.documentElement.lang = 'en';
-    setMetaTag('name', 'description', seo.description);
-    setMetaTag('name', 'robots', activePage === 'not-found' ? 'noindex, follow' : 'index, follow, max-image-preview:large');
-    setMetaTag('property', 'og:title', pageTitle);
-    setMetaTag('property', 'og:description', seo.description);
-    setMetaTag('property', 'og:type', 'website');
-    setMetaTag('property', 'og:url', canonicalUrl);
-    setMetaTag('property', 'og:image', `${siteUrl}/images/Social%20Logo.png`);
-    setMetaTag('name', 'twitter:card', 'summary_large_image');
-    setMetaTag('name', 'twitter:title', pageTitle);
-    setMetaTag('name', 'twitter:description', seo.description);
-    setMetaTag('name', 'twitter:image', `${siteUrl}/images/Social%20Logo.png`);
-
-    let canonical = document.head.querySelector('link[rel="canonical"]');
-    if (!canonical) {
-      canonical = document.createElement('link');
-      canonical.rel = 'canonical';
-      document.head.appendChild(canonical);
-    }
-    canonical.href = canonicalUrl;
-
-    let structuredData = document.head.querySelector('#website-structured-data');
-    if (!structuredData) {
-      structuredData = document.createElement('script');
-      structuredData.id = 'website-structured-data';
-      structuredData.type = 'application/ld+json';
-      document.head.appendChild(structuredData);
-    }
-    structuredData.textContent = JSON.stringify({
-      '@context': 'https://schema.org',
-      '@type': activePage === 'blog' ? 'Blog' : 'WebPage',
-      name: pageTitle,
-      description: seo.description,
-      url: canonicalUrl,
-      isPartOf: {
-        '@type': 'WebSite',
-        name: 'ResumeBiodata.in',
-        url: siteUrl,
-      },
-    });
-  }, [sitePage, step]);
 
   const showSitePage = (page) => {
     setSitePage(page);
@@ -576,7 +578,7 @@ function App() {
         pageNumber += 1;
       }
 
-      pdf.save(`${safeName}_${makerType === 'resume' ? 'Resume' : 'Biodata'}.pdf`);
+      pdf.save(`${safeName}_Resume.pdf`);
     } catch (error) {
       console.error('PDF download failed:', error);
       window.alert('PDF download failed. Please try again.');
@@ -601,8 +603,25 @@ function App() {
     return <HomePage onSelectOption={handleSelectOption} />;
   };
 
+  const activePage = step > 0 ? 'builder' : sitePage;
+  const seo = pageSeo[activePage] || pageSeo['not-found'];
+  const canonicalPath = pagePaths[activePage] || normalizePath(window.location.pathname);
+  const canonicalUrl = `${siteUrl}${canonicalPath}`;
+  const pageTitle = getPageTitle(activePage, step, seo);
+  const appSeo = activePage === 'blog' || activePage === 'blog-post' ? null : (
+    <Seo
+      title={pageTitle}
+      description={seo.description}
+      canonicalPath={canonicalPath}
+      robots={activePage === 'not-found' ? 'noindex, follow' : 'index, follow, max-image-preview:large'}
+      keywords={mainKeywords}
+      schemas={buildSiteSchemas({activePage, title: pageTitle, description: seo.description, canonicalPath, canonicalUrl})}
+    />
+  );
+
   return (
     <div className="app">
+      {appSeo}
       <a className="skip-link" href="#main-content">Skip to main content</a>
       <nav className="navbar" ref={navRef} aria-label="Primary navigation">
         <div className="nav-inner">

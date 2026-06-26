@@ -76,7 +76,7 @@ function HomePage({ onSelectOption }) {
           </div>
           <div className="hero-checklist">
             <span>ATS friendly format</span>
-            <span>Professional biodata support</span>
+            <span>Professional CV support</span>
             <span>Easy edit and instant preview</span>
           </div>
         </div>

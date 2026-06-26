@@ -76,7 +76,7 @@ export default function Blog() {
       '@context': 'https://schema.org',
       '@type': 'CollectionPage',
       name: 'Resume Writing Guides & Career Tips',
-      description: 'Practical resume writing, biodata, ATS, education, skills, and job application guidance.',
+      description: 'Practical resume writing, ATS, education, skills, and job application guidance.',
       url: `${SITE_URL}/blog`,
       isPartOf: {'@type': 'WebSite', name: 'ResumeBiodata.in', url: SITE_URL},
     },
@@ -94,14 +94,14 @@ export default function Blog() {
     <>
       <Seo
         title="Resume Writing Guides & Career Tips | ResumeBiodata.in"
-        description="Practical resume writing, biodata, ATS, education, skills, and job application guidance for students, freshers, and professionals."
+        description="Practical resume writing, ATS, education, skills, and job application guidance for students, freshers, and professionals."
         canonicalPath="/blog"
         schemas={schemas}
       />
       <section className="cms-blog-page" aria-labelledby="cms-blog-heading">
         <header className="cms-blog-hero">
           <span>Career Guides</span>
-          <h1 id="cms-blog-heading">Resume &amp; Biodata Blog</h1>
+          <h1 id="cms-blog-heading">Resume &amp; Career Blog</h1>
           <p>Clear, practical guidance for building stronger resumes and making confident career decisions.</p>
         </header>
 
