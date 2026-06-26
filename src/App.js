@@ -4,66 +4,17 @@ import ResumeForm from './components/ResumeForm';
 import TemplateSelector from './components/TemplateSelector';
 import ResumePreview from './components/ResumePreview';
 import Seo from './components/blog/Seo';
+import {CONTACT_EMAIL, MAIN_SEO_KEYWORDS, PAGE_PATHS, PAGE_SEO, SITE_URL} from './lib/seoConfig';
 import './App.css';
 
 const Blog = React.lazy(() => import('./pages/Blog'));
 const BlogPost = React.lazy(() => import('./pages/BlogPost'));
 
-const contactEmail = 'support@resumebiodata.in';
-const siteUrl = 'https://resumebiodata.in';
-
-const pagePaths = {
-  home: '/',
-  blog: '/blog',
-  about: '/about',
-  contact: '/contact',
-  privacy: '/privacy-policy',
-  terms: '/terms-and-conditions',
-  disclaimer: '/disclaimer',
-  builder: '/resume-builder',
-};
-
+const contactEmail = CONTACT_EMAIL;
+const siteUrl = SITE_URL;
+const pagePaths = PAGE_PATHS;
+const pageSeo = PAGE_SEO;
 const pathPages = Object.fromEntries(Object.entries(pagePaths).map(([page, path]) => [path, page]));
-
-const pageSeo = {
-  home: {
-    title: 'Free Resume Builder & CV Maker Online | ResumeBiodata.in',
-    description: 'Create ATS-friendly professional resumes and CVs online for free. Choose clean templates, customize in minutes, preview instantly, and download high-quality PDF resumes.',
-  },
-  blog: {
-    title: 'Resume Writing Guides & Career Tips | ResumeBiodata.in',
-    description: 'Practical resume writing, ATS, education, skills, and job application guidance for students, freshers, and professionals.',
-  },
-  about: {
-    title: 'About ResumeBiodata.in | Free Resume Builder',
-    description: 'Learn how ResumeBiodata.in helps job seekers create clear, professional resumes and CV documents with privacy-friendly browser tools.',
-  },
-  contact: {
-    title: 'Contact ResumeBiodata.in Support',
-    description: 'Contact ResumeBiodata.in for product questions, suggestions, corrections, accessibility feedback, or technical support.',
-  },
-  privacy: {
-    title: 'Privacy Policy | ResumeBiodata.in',
-    description: 'Read how ResumeBiodata.in handles resume information, uploaded photos, browser processing, cookies, analytics, advertising, and privacy requests.',
-  },
-  terms: {
-    title: 'Terms and Conditions | ResumeBiodata.in',
-    description: 'Review the terms governing lawful use, user responsibilities, document accuracy, availability, and intellectual property on ResumeBiodata.in.',
-  },
-  disclaimer: {
-    title: 'Disclaimer | ResumeBiodata.in',
-    description: 'Understand the limitations of ResumeBiodata.in templates, career information, generated documents, and third-party services.',
-  },
-  builder: {
-    title: 'Create Your Professional Resume | ResumeBiodata.in',
-    description: 'Enter your details, select a professional template, preview your resume, and download a high-quality PDF.',
-  },
-  'not-found': {
-    title: 'Page Not Found | ResumeBiodata.in',
-    description: 'The requested page could not be found. Return to ResumeBiodata.in to create a professional resume.',
-  },
-};
-const mainKeywords = 'free resume builder, resume maker online, CV maker, ATS resume builder, professional resume templates, resume PDF download';
 
 const faqItems = [
   {
@@ -614,7 +565,7 @@ function App() {
       description={seo.description}
       canonicalPath={canonicalPath}
       robots={activePage === 'not-found' ? 'noindex, follow' : 'index, follow, max-image-preview:large'}
-      keywords={mainKeywords}
+      keywords={MAIN_SEO_KEYWORDS}
       schemas={buildSiteSchemas({activePage, title: pageTitle, description: seo.description, canonicalPath, canonicalUrl})}
     />
   );

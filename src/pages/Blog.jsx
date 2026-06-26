@@ -5,6 +5,7 @@ import BlogSkeleton from '../components/blog/BlogSkeleton';
 import Seo from '../components/blog/Seo';
 import {allPostsQuery} from '../lib/blogQueries';
 import {POSTS_PER_PAGE, SITE_URL, normalizeSearchValue} from '../lib/blogUtils';
+import {PAGE_SEO} from '../lib/seoConfig';
 import {sanityClient} from '../lib/sanityClient';
 import '../styles/blog.css';
 
@@ -93,8 +94,8 @@ export default function Blog() {
   return (
     <>
       <Seo
-        title="Resume Writing Guides & Career Tips | ResumeBiodata.in"
-        description="Practical resume writing, ATS, education, skills, and job application guidance for students, freshers, and professionals."
+        title={PAGE_SEO.blog.title}
+        description={PAGE_SEO.blog.description}
         canonicalPath="/blog"
         schemas={schemas}
       />
