@@ -704,3 +704,20 @@ textarea { min-height: 80px; resize: vertical; }
   }
 }
 
+.app {
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.app input,
+.app textarea,
+.app select,
+.app [contenteditable=true],
+.app [role=textbox] {
+  -webkit-user-select: text;
+  user-select: text;
+}
+
+.app img {
+  -webkit-user-drag: none;
+}

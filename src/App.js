@@ -253,6 +253,35 @@ function App() {
   const navRef = useRef(null);
 
   React.useEffect(() => {
+    const isEditableTarget = (target) => (
+      target instanceof Element
+      && Boolean(target.closest('input, textarea, select, [contenteditable=true], [role=textbox]'))
+    );
+
+    const blockContextMenu = (event) => {
+      if (!isEditableTarget(event.target)) event.preventDefault();
+    };
+
+    const blockCopy = (event) => {
+      if (!isEditableTarget(event.target)) event.preventDefault();
+    };
+
+    const blockImageDrag = (event) => {
+      if (event.target instanceof Element && event.target.closest('img')) event.preventDefault();
+    };
+
+    document.addEventListener('contextmenu', blockContextMenu);
+    document.addEventListener('copy', blockCopy);
+    document.addEventListener('dragstart', blockImageDrag);
+
+    return () => {
+      document.removeEventListener('contextmenu', blockContextMenu);
+      document.removeEventListener('copy', blockCopy);
+      document.removeEventListener('dragstart', blockImageDrag);
+    };
+  }, []);
+
+  React.useEffect(() => {
     const handleClickOutside = (event) => {
       if (navRef.current && !navRef.current.contains(event.target)) {
         setMenuOpen(false);
