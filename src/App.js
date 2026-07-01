@@ -1,5 +1,5 @@
-import React, { useState, useRef } from 'react';
-import HomePage from './components/HomePage';
+﻿import React, { useState, useRef } from 'react';
+import HomePage from './components/ShowcaseHome';
 import ResumeForm from './components/ResumeForm';
 import TemplateSelector from './components/TemplateSelector';
 import ResumePreview from './components/ResumePreview';
@@ -607,7 +607,7 @@ function App() {
       <a className="skip-link" href="#main-content">Skip to main content</a>
       <nav className="navbar" ref={navRef} aria-label="Primary navigation">
         <div className="nav-inner">
-          <a className="nav-logo" href="/" onClick={(event) => handlePageLink(event, 'home')} aria-label="ResumeBiodata.in home"><img src="/images/Navbar Logo.png" alt="ResumeBiodata.in Logo" width="1827" height="469" decoding="async" /></a>
+          <a className="nav-logo" href="/" onClick={(event) => handlePageLink(event, 'home')} aria-label="ResumeBiodata.in home"><img src="/images/Navbar Logo.png" alt="ResumeBiodata.in" width="1827" height="469" decoding="async" /></a>
           {step === 0 ? (
             <>
               <button className="hamburger-menu" type="button" onClick={() => setMenuOpen(!menuOpen)} aria-label="Toggle navigation menu" aria-expanded={menuOpen} aria-controls="primary-menu">
@@ -616,7 +616,7 @@ function App() {
                 <span></span>
               </button>
               <div id="primary-menu" className={`nav-menu ${menuOpen ? 'active' : ''}`}>
-                <a className={`nav-menu-action ${sitePage === 'blog' || sitePage === 'blog-post' ? 'active' : ''}`} href="/blog" aria-current={sitePage === 'blog' || sitePage === 'blog-post' ? 'page' : undefined} onClick={(event) => handlePageLink(event, 'blog')}>Guides</a>
+                <a className={`nav-menu-action ${sitePage === 'blog' || sitePage === 'blog-post' ? 'active' : ''}`} href="/blog" aria-current={sitePage === 'blog' || sitePage === 'blog-post' ? 'page' : undefined} onClick={(event) => handlePageLink(event, 'blog')}>Resume &amp; Career Guides</a>
                 <a className={`nav-menu-action ${sitePage === 'about' ? 'active' : ''}`} href="/about" aria-current={sitePage === 'about' ? 'page' : undefined} onClick={(event) => handlePageLink(event, 'about')}>About</a>
                 <a className={`nav-menu-action ${sitePage === 'contact' ? 'active' : ''}`} href="/contact" aria-current={sitePage === 'contact' ? 'page' : undefined} onClick={(event) => handlePageLink(event, 'contact')}>Contact</a>
                 <button className="btn-secondary nav-btn" onClick={() => handleSelectOption('resume')}>Start Now</button>
@@ -690,6 +690,16 @@ function App() {
 }
 
 export default App;
+
+
+
+
+
+
+
+
+
+
 
 
 

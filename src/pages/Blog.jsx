@@ -1,4 +1,4 @@
-import {useCallback, useEffect, useMemo, useState} from 'react';
+﻿import {useCallback, useEffect, useMemo, useState} from 'react';
 import BlogCard from '../components/blog/BlogCard';
 import BlogSidebar from '../components/blog/BlogSidebar';
 import BlogSkeleton from '../components/blog/BlogSkeleton';
@@ -76,7 +76,7 @@ export default function Blog() {
     {
       '@context': 'https://schema.org',
       '@type': 'CollectionPage',
-      name: 'Resume Writing Guides & Career Tips',
+      name: 'Resume & Career Guides',
       description: 'Practical resume writing, ATS, education, skills, and job application guidance.',
       url: `${SITE_URL}/blog`,
       isPartOf: {'@type': 'WebSite', name: 'ResumeBiodata.in', url: SITE_URL},
@@ -101,8 +101,8 @@ export default function Blog() {
       />
       <section className="cms-blog-page" aria-labelledby="cms-blog-heading">
         <header className="cms-blog-hero">
-          <span>Career Guides</span>
-          <h1 id="cms-blog-heading">Resume &amp; Career Blog</h1>
+          <span>Resume &amp; Career Guides</span>
+          <h1 id="cms-blog-heading">Resume &amp; Career Guides</h1>
           <p>Clear, practical guidance for building stronger resumes and making confident career decisions.</p>
         </header>
 
@@ -176,3 +176,4 @@ export default function Blog() {
     </>
   );
 }
+

@@ -1,4 +1,4 @@
-export const SITE_NAME = 'ResumeBiodata.in';
+﻿export const SITE_NAME = 'ResumeBiodata.in';
 export const SITE_URL = 'https://resumebiodata.in';
 export const CONTACT_EMAIL = 'support@resumebiodata.in';
 
@@ -24,7 +24,7 @@ export const PAGE_SEO = {
     description: HOME_SEO_DESCRIPTION,
   },
   blog: {
-    title: 'Resume Writing Guides & Career Tips | ResumeBiodata.in',
+    title: 'Resume & Career Guides | ResumeBiodata.in',
     description: 'Practical resume writing, ATS, education, skills, and job application guidance for students, freshers, and professionals.',
   },
   about: {
@@ -56,3 +56,4 @@ export const PAGE_SEO = {
     description: 'The requested page could not be found. Return to ResumeBiodata.in to create a professional resume.',
   },
 };
+
