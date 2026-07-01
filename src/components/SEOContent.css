@@ -1,0 +1,20 @@
+.resume-seo-card { width: min(1000px, calc(100% - 32px)); margin: 12px auto 48px; overflow: hidden; border: 1px solid #e2e8f0; border-radius: 18px; background: #fff; box-shadow: 0 18px 46px rgba(15, 23, 42, 0.08); color: #475569; }
+.resume-seo-copy, .seo-faq { padding: clamp(24px, 4vw, 42px); }
+.resume-seo-copy { font-size: 1rem; line-height: 1.78; }
+.resume-seo-eyebrow { margin-bottom: 8px; color: var(--primary); font-size: 0.76rem; font-weight: 800; letter-spacing: 1.1px; text-transform: uppercase; }
+.resume-seo-card h2 { margin-bottom: 18px; color: #0f172a; font-family: 'Playfair Display', serif; font-size: clamp(1.65rem, 3.4vw, 2.45rem); line-height: 1.18; }
+.resume-seo-card h3 { margin: 25px 0 7px; color: #1e3a8a; font-size: 1.15rem; }
+.resume-seo-card p { margin: 0; }
+.resume-seo-links { display: flex; gap: 10px; margin-top: 28px; flex-wrap: wrap; }
+.resume-seo-links a { padding: 7px 11px; border: 1px solid #cddcf3; border-radius: 999px; background: #f7faff; color: #1747a6; font-size: 0.86rem; font-weight: 700; text-decoration: none; }
+.resume-seo-links a:hover { border-color: var(--primary); background: #eef4ff; text-decoration: underline; text-underline-offset: 3px; }
+.seo-faq { border-top: 1px solid #e2e8f0; background: #f8fafc; }
+.seo-faq-list { display: grid; gap: 10px; }
+.seo-faq-item { border: 1px solid #dce5f1; border-radius: 10px; background: #fff; }
+.seo-faq-item summary { padding: 16px 18px; color: #172554; font-weight: 700; cursor: pointer; }
+.seo-faq-item p { padding: 0 18px 17px; color: #64748b; line-height: 1.65; }
+
+@media (max-width: 640px) {
+  .resume-seo-card { width: calc(100% - 20px); margin-bottom: 28px; border-radius: 13px; }
+  .resume-seo-copy, .seo-faq { padding: 22px 18px; }
+}

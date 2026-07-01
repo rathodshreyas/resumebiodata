@@ -3,6 +3,8 @@ import HomePage from './components/HomePage';
 import ResumeForm from './components/ResumeForm';
 import TemplateSelector from './components/TemplateSelector';
 import ResumePreview from './components/ResumePreview';
+import SEOContent from './components/SEOContent';
+import ToolSchema from './components/ToolSchema';
 import Seo from './components/blog/Seo';
 import {CONTACT_EMAIL, MAIN_SEO_KEYWORDS, PAGE_PATHS, PAGE_SEO, SITE_URL} from './lib/seoConfig';
 import './App.css';
@@ -43,7 +45,7 @@ const getPageTitle = (activePage, step, seo) => {
 
 const buildSiteSchemas = ({activePage, title, description, canonicalPath, canonicalUrl}) => {
   const breadcrumbName = activePage === 'home' ? 'Home' : title.replace(' | ResumeBiodata.in', '');
-  const schemas = [
+  const schemas = activePage === 'builder' ? [] : [
     {
       '@context': 'https://schema.org',
       '@type': 'BreadcrumbList',
@@ -662,6 +664,13 @@ function App() {
             </div>
           )}        </main>
       </div>
+
+      {activePage === 'builder' && (
+        <>
+          <ToolSchema />
+          <SEOContent />
+        </>
+      )}
 
       <footer className="footer">
         <div className="footer-inner">
