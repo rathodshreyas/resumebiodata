@@ -106,7 +106,7 @@ const defaultData = {
   fullName: 'Rahul Patil',
   profileTitle: '',
   address: 'Kothrud, Pune, Maharashtra - 411038',
-  mobile: '+91 98765 43210',
+  mobile: '+91 9876543210',
   email: 'rahul.patil@example.com',
   careerObjective: 'Motivated and detail-oriented graduate seeking an opportunity to apply my technical skills, learn new technologies, and contribute to the growth of the organization.',
   qualifications: [
