@@ -1,4 +1,4 @@
-﻿import React, { useState, useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import HomePage from './components/ShowcaseHome';
 import ResumeForm from './components/ResumeForm';
 import TemplateSelector from './components/TemplateSelector';
@@ -253,6 +253,12 @@ function App() {
   const [isDownloading, setIsDownloading] = useState(false);
   const previewRef = useRef(null);
   const navRef = useRef(null);
+
+  React.useEffect(() => {
+    if (step > 0) {
+      window.scrollTo({ top: 0, behavior: 'auto' });
+    }
+  }, [step]);
 
   React.useEffect(() => {
     const isEditableTarget = (target) => (
