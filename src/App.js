@@ -254,10 +254,26 @@ function App() {
   const previewRef = useRef(null);
   const navRef = useRef(null);
 
-  React.useEffect(() => {
-    if (step > 0) {
-      window.scrollTo({ top: 0, behavior: 'auto' });
-    }
+  React.useLayoutEffect(() => {
+    if (step === 0) return undefined;
+
+    const scrollToTop = () => {
+      window.scrollTo(0, 0);
+      document.documentElement.scrollTop = 0;
+      document.body.scrollTop = 0;
+    };
+
+    scrollToTop();
+    const frame = window.requestAnimationFrame(() => {
+      scrollToTop();
+      window.requestAnimationFrame(scrollToTop);
+    });
+    const timeout = window.setTimeout(scrollToTop, 150);
+
+    return () => {
+      window.cancelAnimationFrame(frame);
+      window.clearTimeout(timeout);
+    };
   }, [step]);
 
   React.useEffect(() => {
